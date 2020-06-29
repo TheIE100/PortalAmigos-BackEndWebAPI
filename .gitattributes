@@ -61,3 +61,5 @@
 #*.PDF   diff=astextplain
 #*.rtf   diff=astextplain
 #*.RTF   diff=astextplain
+# para ignorar los js en la determinacion del lenguaje principal en GitHub.
+WebApplication1/Scripts/* linguist-vendored

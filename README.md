@@ -7,7 +7,8 @@ Back-End que gestiona inicio de sesión e interacciones del portal amigos Front-
 
 ## Diagrama de contexto 
 
-<img src="https://i.ibb.co/6DQcNm8/Anotaci-n-2020-06-29-150226.png"/>
+
+<img src="https://i.ibb.co/nn7bBBS/Anotaci-n-2020-06-29-150226.png"/>
 
 ## Usuario y pass maestra
 

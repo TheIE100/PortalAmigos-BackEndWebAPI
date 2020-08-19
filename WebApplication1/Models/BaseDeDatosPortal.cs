@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -13,7 +14,8 @@ namespace WebApplication1.Models
         public string Imagen { get; set; }
         public string LigaTwitch { get; set; }
 
-        public List<ApplicationUser> Usuarios { get; set; }
+        [JsonIgnore]
+        public virtual List<ApplicationUser> Usuarios { get; set; }
 
     }
 

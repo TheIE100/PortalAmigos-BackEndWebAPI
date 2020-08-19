@@ -38,7 +38,7 @@ namespace WebApplication1
 
 
             // Cobfigyuracion de request para aplicaciones extenar - ejemplo> ANGUKAR 
-            HttpContext.Current.Response.Headers.Set("Access-Control-Allow-Origin", "*");
+          //  HttpContext.Current.Response.Headers.Set("Access-Control-Allow-Origin", "*");  //porque ya lo pusimos en el en el web config
 
             if (HttpContext.Current.Request.HttpMethod == "OPTIONS")
             {

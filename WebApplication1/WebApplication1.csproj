@@ -349,6 +349,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BaseDeDatosPortal.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\InputModels.cs" />
     <Compile Include="Models\ResponseModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />

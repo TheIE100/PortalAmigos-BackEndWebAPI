@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNet.Identity;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +9,8 @@ using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
+
+    //NOTA: WEV API SOLAMENTE PERMITE UN METODO GET,POST,PUT,DELETE POR CONTROLADOR SI PONES MAS DE UNO TOMA EL PRIMERO QUE SE CREO..
     [Authorize]
     public class AmigosController : ApiController
     {
@@ -56,21 +57,25 @@ namespace WebApplication1.Controllers
             return respuesta;
         }
 
-
+        public class ActualizarAmigoInput { 
+            public Amigo AmigoRecibido { get; set; }
+            public string IdentificadorRegistro { get; set; }
+        }
         [HttpPut]
-        public ClassicResponse ActualizarAmigo(string amigoRecibido, string identificadorRegistro) {
-            var amigoCliente = new JavaScriptSerializer().Deserialize<Amigo>(amigoRecibido);
+        public ClassicResponse ActualizarAmigo([FromBody] ActualizarAmigoInput input) {
+            var amigoCliente = input.AmigoRecibido;
             var respuesta = new ClassicResponse();
             try
             {
-                if (db.Amigos.Any(amigo => amigo.Nombre == amigoCliente.Nombre))
+                if (db.Amigos.Any(amigo => amigo.Nombre == amigoCliente.Nombre 
+                && amigo.Nombre != input.IdentificadorRegistro))
                 {
                     respuesta.Estatus = 300;
                     respuesta.Mensaje = "Username Repetido";
                 }
                 else
                 {
-                    var amigoDb = db.Amigos.FirstOrDefault(a => a.Nombre == identificadorRegistro);
+                    var amigoDb = db.Amigos.FirstOrDefault(a => a.Nombre == input.IdentificadorRegistro);
                     amigoDb.Nombre = amigoCliente.Nombre;
                     amigoDb.LigaTwitch = amigoCliente.LigaTwitch;
                     amigoDb.Imagen = amigoCliente.Imagen;

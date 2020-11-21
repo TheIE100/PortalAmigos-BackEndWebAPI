@@ -35,15 +35,10 @@ namespace WebApplication1
             CultureInfo culture = new CultureInfo("es-MX");
             Thread.CurrentThread.CurrentCulture = culture;
             Thread.CurrentThread.CurrentUICulture = culture;
-
-
             // Cobfigyuracion de request para aplicaciones extenar - ejemplo> ANGUKAR 
-          //  HttpContext.Current.Response.Headers.Set("Access-Control-Allow-Origin", "*");  //porque ya lo pusimos en el en el web config
-
+            //  HttpContext.Current.Response.Headers.Set("Access-Control-Allow-Origin", "*");  //porque ya lo pusimos en el en el web config
             if (HttpContext.Current.Request.HttpMethod == "OPTIONS")
             {
-
-
                 HttpContext.Current.Response.Headers.Set("Access-Control-Allow-Methods", "*");
                 // If any http headers are shown in preflight error in browser console add them below
                 HttpContext.Current.Response.Headers.Set("Access-Control-Allow-Headers", "*");

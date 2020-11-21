@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 using System.Web.Http.Results;
+using System.Web.Script.Serialization;
 using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
@@ -56,8 +57,9 @@ namespace WebApplication1.Controllers
         }
 
 
-        [HttpPost]
-        public ClassicResponse ActualizarAmigo(Amigo amigoCliente, string identificadorRegistro) {
+        [HttpPut]
+        public ClassicResponse ActualizarAmigo(string amigoRecibido, string identificadorRegistro) {
+            var amigoCliente = new JavaScriptSerializer().Deserialize<Amigo>(amigoRecibido);
             var respuesta = new ClassicResponse();
             try
             {
@@ -84,6 +86,28 @@ namespace WebApplication1.Controllers
             return respuesta;
 
         }
+
+
+        [HttpDelete]
+        public ClassicResponse BorrarAmigo(string identificadorRegistro)
+        {
+            var respuesta = new ClassicResponse();
+            try
+            {
+                var amigoDb = db.Amigos.FirstOrDefault(a => a.Nombre == identificadorRegistro);
+                db.Entry(amigoDb).State = System.Data.Entity.EntityState.Deleted;
+                db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                respuesta.Estatus = 500;
+                respuesta.Mensaje = $"Error en el servidor: {e}";
+            }
+            return respuesta;
+
+        }
+
+
 
     }
 }
